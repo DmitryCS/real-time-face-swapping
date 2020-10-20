@@ -123,7 +123,10 @@ if __name__ == '__main__':
                 # print(curPoint)
                 points_dict[curPoint] = index
 
-            dt = calculateDelaunayTriangles(rect, hull2, points_dict)
+            print(rect, hull2, points_dict)
+            try:
+                dt = calculateDelaunayTriangles(rect, hull2, points_dict)
+            except
 
             if len(dt) == 0:
                 quit()
