@@ -129,10 +129,19 @@ if __name__ == '__main__':
             for index, curPoint in enumerate(points2):
                 # print(curPoint)
                 points_dict[curPoint] = index
+<<<<<<< HEAD
             try:
                 dt = calculateDelaunayTriangles(rect, hull2, points_dict)
             except:
                 continue
+=======
+
+            print(rect, hull2, points_dict)
+            try:
+                dt = calculateDelaunayTriangles(rect, hull2, points_dict)
+            except
+
+>>>>>>> 86990c97d49849a6b1e9898cd2a1737ab704da1e
             if len(dt) == 0:
                 quit()
 
