@@ -1,19 +1,19 @@
 from utils.model_implementation import *
 
 import cv2
-
+import json
 
 def readPoints(path):
     # Create an array of points.
-    points = []
+    new_points = []
 
     # Read points
-    with open(path) as file:
-        for line in file:
-            x, y = line.split()
-            points.append((int(x), int(y)))
+    with open(path, 'r') as f:
+        points = json.load(f)
+    for point in points:
+        new_points.append(tuple(point))
 
-    return points
+    return new_points
 
 
 # Apply affine transform calculated using srcTri and dstTri to src and
@@ -23,7 +23,7 @@ def applyAffineTransform(src, srcTri, dstTri, size):
     warpMat = cv2.getAffineTransform(np.float32(srcTri), np.float32(dstTri))
 
     # Apply the Affine Transform just found to the src image
-    dst = cv2.warpAffine(src, warpMat, (size[0], size[1]), None, flags=cv2.INTER_LINEAR,
+    dst = cv2.warpAffine(src, warpMat, (size[0], size[1]), None, flags=cv2.INTER_CUBIC,
                          borderMode=cv2.BORDER_REFLECT_101)
     # dst = cv2.warpAffine(src, warpMat, (size[0], size[1]), None, flags=None, borderMode=None)
     return dst
